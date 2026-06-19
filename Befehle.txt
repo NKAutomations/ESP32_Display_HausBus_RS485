@@ -1,0 +1,4 @@
+Ping abfragen ->		9061.OUT.210.gSTATUS
+Reset des Displays ->		9061.SYS.1.RESET
+Name des Button anpassen->	9061.BTN.1.SET_CFG.hi	
+Name des Button anpassen->	9061.LED.1.ON.1	
