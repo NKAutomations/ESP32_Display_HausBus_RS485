@@ -1,0 +1,39 @@
+#ifndef LV_CONF_H
+#define LV_CONF_H
+
+#define LV_COLOR_DEPTH 16
+#define LV_COLOR_16_SWAP 0
+#define LV_MEM_CUSTOM 1
+#define LV_MEMCPY_MEMSET_STD 1
+#define LV_ATTRIBUTE_FAST_MEM IRAM_ATTR
+
+#define LV_HOR_RES_MAX 800
+#define LV_VER_RES_MAX 480
+
+#define LV_USE_LOG 1
+#define LV_LOG_LEVEL LV_LOG_LEVEL_WARN
+
+#define LV_USE_THEME_DEFAULT 1
+#define LV_THEME_DEFAULT_DARK 0
+#define LV_THEME_DEFAULT_GROW 0
+#define LV_THEME_DEFAULT_TRANSITION_TIME 0
+
+#define LV_USE_BTN 1
+#define LV_USE_LABEL 1
+#define LV_USE_DROPDOWN 1
+#define LV_USE_IMG 1
+
+// Fonts aktivieren
+#define LV_FONT_MONTSERRAT_12 1
+#define LV_FONT_MONTSERRAT_14 1
+#define LV_FONT_MONTSERRAT_16 1
+#define LV_FONT_MONTSERRAT_22 1
+#define LV_FONT_MONTSERRAT_24 1
+#define LV_FONT_MONTSERRAT_26 1
+#define LV_FONT_MONTSERRAT_38 1
+
+#define LV_FONT_DEFAULT &lv_font_montserrat_14
+
+#define LV_USE_SNAPSHOT 1
+
+#endif

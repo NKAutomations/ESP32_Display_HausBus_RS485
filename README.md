@@ -1,6 +1,45 @@
-# Hausbus CYD Controller (V1.02/1.03)
+# Hausbus Display Controller (CYD + Waveshare 4.3B)
 
-Dieses Projekt implementiert eine Benutzeroberfläche für einen **CYD (Cheap Yellow Display)**, der als Steuerungszentrale für ein Smart-Home-System über das **Hausbus-Protokoll** fungiert. Das System ermöglicht die Steuerung von LEDs und anderen Geräten via RS485/UART sowie die Konfiguration von Geräte-IDs und Button-Labels über eine grafische Oberfläche (LVGL).
+Dieses Repository enthält zwei Varianten der Hausbus-Steuerung mit LVGL-Oberfläche:
+
+- CYD (Cheap Yellow Display)
+- Waveshare ESP32-S3-Touch-LCD-4.3B
+
+Beide Varianten nutzen das Hausbus-Protokoll über RS485/UART, inklusive Device-ID-Verwaltung, Label-Konfiguration und Status-Rückmeldungen.
+
+## Repository-Aufbau
+- CYD: Implementierung und Referenzcode im Ordner CYD
+- Waveshare 4.3B PlatformIO-Projekt: Ordner Waveshare43b
+
+## Waveshare 4.3B (PlatformIO)
+
+Pfad: Waveshare43b
+
+### Enthaltene Funktionen
+- Vollständige Hausbus-Logik (Parser, TX/RX, Backoff, Polling)
+- Service-Seite für Device-ID-Konfiguration via NVS (Preferences)
+- Dynamische Label-Updates über BTN.SET_CFG
+- Dropdown-Konfiguration über SYS.1.SET_CFG
+- Reset-Verarbeitung über SYS.1.RESET
+- LED-Rückmeldelogik mit UI-Statusfarben
+
+### RS485 auf Waveshare 4.3B
+- UART: Serial1
+- RX: GPIO43
+- TX: GPIO44
+- Baudrate: 57600
+- Format: 8E1
+
+### Instanz-Mapping in Waveshare43b
+- UI-Buttons 1-6 senden BTN-Instanzen 17-22
+- LED-Rückmeldungen 49-54 werden auf UI-Buttons 1-6 gemappt
+- Beim Drücken wird STATUS.1 gesendet, beim Loslassen STATUS.0
+
+### Build und Upload
+Im Ordner Waveshare43b:
+
+1. pio run -e esp32s3
+2. pio run -e esp32s3 -t upload --upload-port COM16
 
 ## 🚀 Funktionen
 *   **Multi-Ebenen-Steuerung:** Verwaltung von drei verschiedenen Ebenen (z.B. Grundfunktionen, EG, OG) mit jeweils eigenen Device-IDs.
@@ -18,6 +57,8 @@ Dieses Projekt implementiert eine Benutzeroberfläche für einen **CYD (Cheap Ye
 *   **Kommunikation:** RS485 über UART (Serial2).
 *   **Pins (Standard):** RX = 35, TX = 22.
 *   **Baudrate:** 57600 (Format: 8E1).
+
+Hinweis: Diese Pin-Angaben gelten für die CYD-Variante. Die Waveshare 4.3B-Variante nutzt die oben dokumentierten Pins im Ordner Waveshare43b.
 
 ### Hausbus-Protokoll Struktur
 Die Kommunikation basiert auf einem Punkt-Trenner-Schema innerhalb eines Frames:
